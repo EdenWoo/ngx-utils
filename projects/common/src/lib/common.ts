@@ -59,4 +59,26 @@ export class CommonUtil {
     }
     return 'Unkonwn';
   }
+
+
+  /* Convert the first character to upper case and the remaining to lower case.
+ * |Name  |Type  |Desc                |
+ * |------|------|--------------------|
+ * |str   |string|String to capitalize|
+ * |return|string|Capitalized string  |
+ * capitalize('rED'); // -> Red
+ */
+  static capitalized(str) {
+    return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
+  }
+
+
+  static objToStr(val) {
+    const ObjToStr = Object.prototype.toString;
+    return ObjToStr.call(val);
+  }
+
+  static isDate(val) {
+    return CommonUtil.objToStr(val) === '[object Date]';
+  }
 }

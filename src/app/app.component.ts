@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {CommonUtil} from '../../projects/common/src/lib/common';
 
 @Component({
   selector: 'nu-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'nu';
+
+  constructor() {
+    console.log(CommonUtil.getExplore());
+    console.log(CommonUtil.capitalized('eREREfjdjf dERERfj'));
+  }
+
+
 }
