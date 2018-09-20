@@ -71,4 +71,14 @@ export class CommonUtil {
   static capitalized(str) {
     return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
   }
+
+
+  static objToStr(val) {
+    const ObjToStr = Object.prototype.toString;
+    return ObjToStr.call(val);
+  }
+
+  static isDate(val) {
+    return CommonUtil.objToStr(val) === '[object Date]';
+  }
 }
