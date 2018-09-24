@@ -22,6 +22,12 @@
       ],
       "common/*": [
         "dist/common/*"
+      ],
+      "ngx-tools-core": [
+        "dist/ngx-tools-core"
+      ],
+      "ngx-tools-core/*": [
+        "dist/ngx-tools-core/*"
       ]
     }
   }
