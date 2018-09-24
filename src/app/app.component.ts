@@ -12,7 +12,6 @@ export class AppComponent {
   constructor() {
     console.log(CommonUtil.getExplore());
     console.log(CommonUtil.capitalized('eREREfjdjf dERERfj'));
+    console.log(CommonUtil.roundDecimal('12321.343', 5));
   }
-
-
 }

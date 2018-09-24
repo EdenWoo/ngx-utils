@@ -1,3 +1,5 @@
+import * as BigNumber from 'bignumber.js';
+
 export class CommonUtil {
 
   /**
@@ -81,4 +83,58 @@ export class CommonUtil {
   static isDate(val) {
     return CommonUtil.objToStr(val) === '[object Date]';
   }
+
+  static isNum(val) {
+    return CommonUtil.objToStr(val) === '[object Number]';
+  }
+
+  // from http://www.jacklmoore.com/notes/rounding-in-javascript/
+  // http://www.javascriptkit.com/javatutors/formatnumber.shtml
+  static roundDecimal(value, decimals) {
+    let number;
+    // the value can not parse to number
+    if (!value || isNaN(Number(value))) {
+      return null;
+    } else {
+      number = Number(value);
+      return parseFloat(parseFloat((Math.round(number * 10000) / 10000).toString()).toFixed(decimals));
+    }
+
+    // console.log((('+' + value + 'e' + decimals) + 'e-' + decimals).toFixed(decimals));
+    // console.log(parseFloat((value + 'e' + decimals) + 'e-' + decimals));
+    // console.log(Math.round(parseFloat((value + 'e' + decimals) + 'e-' + decimals)));
+    //
+    // return Number(Math.round(parseFloat((value + 'e' + decimals) + 'e-' + decimals)));
+
+
+
+
+    // // if value is number
+    // if (CommonUtil.isNum(value)) {
+    //   number = value;
+    // } else {
+    //
+    // }
+
+    // console.log((value + 'e' + decimals) + 'e-' + decimals);
+    // return Number(Math.round( Number((value + 'e' + decimals) + 'e-' + decimals)));
+  }
+
+  // static toFixed(x) {
+  //   if (Math.abs(x) < 1.0) {
+  //     var e = parseInt(x.toString().split('e-')[1]);
+  //     if (e) {
+  //       x *= Math.pow(10,e-1);
+  //       x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+  //     }
+  //   } else {
+  //     var e = parseInt(x.toString().split('+')[1]);
+  //     if (e > 20) {
+  //       e -= 20;
+  //       x /= Math.pow(10,e);
+  //       x += (new Array(e+1)).join('0');
+  //     }
+  //   }
+  //   return x;
+  // }
 }
