@@ -23,11 +23,11 @@
       "common/*": [
         "dist/common/*"
       ],
-      "ngx-tools-core": [
-        "dist/ngx-tools-core"
+      "iw-core": [
+        "dist/iw-core"
       ],
-      "ngx-tools-core/*": [
-        "dist/ngx-tools-core/*"
+      "iw-core/*": [
+        "dist/iw-core/*"
       ]
     }
   }

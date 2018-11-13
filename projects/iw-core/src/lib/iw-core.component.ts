@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-tools-core',
+  selector: 'lib-iw-core',
   template: `
     <p>
-      ngx-tools-core works!
+      iw-core works!
     </p>
   `,
   styles: []

@@ -1,7 +1,7 @@
 /*
- * Public API Surface of ngx-tools-core
+ * Public API Surface of iw-core
  */
 
-export * from './lib/ngx-tools-core.service';
-export * from './lib/ngx-tools-core.component';
-export * from './lib/ngx-tools-core.module';
+export * from './lib/iw-core.service';
+export * from './lib/iw-core.component';
+export * from './lib/iw-core.module';

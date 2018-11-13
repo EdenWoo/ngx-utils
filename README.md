@@ -11,4 +11,4 @@ npm publish
 
 //添加新的模块
 
-ng generate library ngx-tools-core --prefix ntc
+ng generate library iw-core --prefix ntc
