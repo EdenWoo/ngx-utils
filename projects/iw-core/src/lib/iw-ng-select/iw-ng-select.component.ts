@@ -22,8 +22,7 @@ export class IwNgSelectComponent implements OnInit {
     @Input('outputArray')
     public outputArray: boolean;
 
-    @Input('datesForLoad')
-    public datasForLoad: any;
+    @Input() public datasForLoad: any;
 
     @Input('datasForLoadSubject')
     public datasForLoadSubject = new Subject();
