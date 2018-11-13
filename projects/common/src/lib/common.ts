@@ -59,4 +59,55 @@ export class CommonUtil {
     }
     return 'Unkonwn';
   }
+
+  /**
+   * deep copy
+   * */
+  static deepClone(values) {
+    var copy;
+
+    // Handle the 3 simple types, and null or undefined
+    if (null == values || 'object' != typeof values) return values;
+
+    // Handle Date
+    if (values instanceof Date) {
+      copy = new Date();
+      copy.setTime(values.getTime());
+      return copy;
+    }
+
+    // Handle Array
+    if (values instanceof Array) {
+      copy = [];
+      for (var i = 0, len = values.length; i < len; i++) {
+        copy[i] = CommonUtil.deepClone(values[i]);
+      }
+      return copy;
+    }
+
+    // Handle Object
+    if (values instanceof Object) {
+      copy = {};
+      for (const attr in values) {
+        if (values.hasOwnProperty(attr)) {
+          copy[attr] = CommonUtil.deepClone(values[attr]);
+        }
+      }
+      return copy;
+    }
+
+    throw new Error('Unable to copy values! Its type isn\'t supported.');
+  }
+
+  /**
+   * if is a valid email
+   */
+  static isEmail(str) {
+    return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(str);
+  }
+
+  static isUrl(str) {
+    return /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i.test(str);
+  }
+
 }
