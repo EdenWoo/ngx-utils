@@ -19,6 +19,10 @@ ng generate library iw-core --prefix ntc
 
 add package: add  "@ng-select/ng-select": "^2.12.0" in peerDependencies -> package.json
 
-cd projects/iw-core
+// 发布
+
+ng build iw-core --prod
+
+cd dist/iw-core
 
 npm publish
