@@ -184,6 +184,12 @@
   dependencies:
     tslib "^1.9.0"
 
+"@ng-select/ng-select@^2.12.0":
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-2.12.0.tgz#7cd3b7975d98b99c2357488e5bb18988d64390c5"
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"

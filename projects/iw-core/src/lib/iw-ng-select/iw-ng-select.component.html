@@ -1,0 +1,12 @@
+<ng-select [items]="datasForSelect"
+           [multiple]="multiple"
+           [bindLabel]="displayProp"
+           (change)="datasChanged($event)"
+           placeholder="Type to search"
+           [(ngModel)]="selectedDatas">
+    <!--<ng-template ng-option-tmp let-item="item">-->
+        <!--{{item.text}}-->
+    <!--</ng-template>-->
+</ng-select>
+
+<!--[typeahead]="typeahead"-->

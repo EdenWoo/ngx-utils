@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'lib-ngx-tools-core',
@@ -9,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: []
 })
-export class NgxToolsCoreComponent implements OnInit {
+export class IwCoreComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
