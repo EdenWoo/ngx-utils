@@ -3,7 +3,8 @@
            [bindLabel]="displayProp"
            (change)="datasChanged($event)"
            placeholder="Type to search"
-           [(ngModel)]="selectedDatas">
+           [formControl]="formControl"
+           [(ngModel)]="_value">
     <!--<ng-template ng-option-tmp let-item="item">-->
         <!--{{item.text}}-->
     <!--</ng-template>-->

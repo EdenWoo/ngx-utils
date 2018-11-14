@@ -1,12 +1,22 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Host, Input, OnInit, Optional, Output, SkipSelf, ViewChild} from '@angular/core';
 import {Subject, Observable} from 'rxjs';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {AbstractValueAccessor, MakeProvider} from '../abstract-value-accessor';
+import {AbstractControl, ControlContainer} from '@angular/forms';
+
 @Component({
     selector: 'iw-ng-select',
-    templateUrl: './iw-ng-select.component.html'
+    templateUrl: './iw-ng-select.component.html',
+    providers: [MakeProvider(IwNgSelectComponent)]
 })
-export class IwNgSelectComponent implements OnInit {
+export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit {
+
+    @Input() formControlName: string;
+    @Input() formControl: any;
+
+    private control: AbstractControl;
+
     @Input('searchStr')
     public searchStr: string;
 
@@ -55,11 +65,16 @@ export class IwNgSelectComponent implements OnInit {
     public typeahead = new EventEmitter<string>();
 
     constructor(public http: HttpClient,
+                @Optional() @Host() @SkipSelf()
+                private controlContainer: ControlContainer,
                 public cd: ChangeDetectorRef) {
+        super();
         this.initSelect();
     }
 
     ngOnInit(): void {
+
+        this.formControlLogic();
         this.subscribeParentEvent();
 
         if (this.service) {
@@ -68,6 +83,24 @@ export class IwNgSelectComponent implements OnInit {
                 console.log(resp.content);
             });
         }
+    }
+
+    formControlLogic() {
+        if (this.controlContainer) {
+            if (this.formControlName) {
+                this.control = this.controlContainer.control.get(this.formControlName);
+            } else {
+                console.warn('Missing FormControlName directive from host element of the component');
+            }
+        } else {
+            console.warn('Can\'t find parent FormGroup directive');
+        }
+    }
+
+    // Allows Angular to register a function to call when the input has been touched.
+    // Save the function as a property to call later here.
+    registerOnTouched(fn: () => void): void {
+        this.onTouched = fn;
     }
 
     initSelect() {
@@ -145,4 +178,12 @@ export class IwNgSelectComponent implements OnInit {
             });
         }
     }
+
+    writeValue(value: any) {
+        this._value = value;
+        // warning: comment below if only want to emit on user intervention
+        this.onChange(value);
+        console.log(this._value);
+    }
+
 }
