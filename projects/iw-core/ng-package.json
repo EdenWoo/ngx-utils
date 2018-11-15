@@ -6,6 +6,11 @@
     "entryFile": "src/public_api.ts"
   },
   "whitelistedNonPeerDependencies": [
-    "@ng-select/ng-select"
+    "@ng-select/ng-select",
+    "@ng-select/ng-select",
+    "ngx-dropzone-wrapper",
+    "@ckeditor/ckeditor5-angular",
+    "@ckeditor/ckeditor5-build-classic",
+    "@ckeditor/ckeditor5-build-decoupled-document"
   ]
 }
