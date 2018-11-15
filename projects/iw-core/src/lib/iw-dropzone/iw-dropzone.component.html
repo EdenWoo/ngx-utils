@@ -1,0 +1,9 @@
+<dropzone #dropzoneFile
+          [config]="config"
+          [message]="'Click or drag images here to upload'"
+          (error)="onUploadError($event)"
+          (removedfile)="removedfile($event)"
+          (success)="onUploadSuccess($event)"
+          (maxfilesexceeded)="onMaxFilesExceeded($event)"
+          (maxfilesreached)="onMaxFilesReached($event)">
+</dropzone>
