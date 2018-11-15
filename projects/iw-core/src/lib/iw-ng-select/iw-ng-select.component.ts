@@ -13,9 +13,7 @@ import {AbstractControl, ControlContainer} from '@angular/forms';
 export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit {
 
     @Input() formControlName: string;
-    @Input() formControl: any;
-
-    private control: AbstractControl;
+    @Input() formControl: AbstractControl;
 
     @Input('searchStr')
     public searchStr: string;
@@ -34,20 +32,7 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
 
     @Input() public datasForLoad: any;
 
-    @Input('datasForLoadSubject')
-    public datasForLoadSubject = new Subject();
-
-    @Input('dataIdForLoad')
-    public dataIdForLoad: number;
-
-    @Input('dataIdForLoadSubject')
-    public dataIdForLoadSubject: Subject<number>;
-
-    @Input('datasForSelect')
-    public datasForSelect: any;
-
-    @Input('datasForSelectSubject')
-    public datasForSelectSubject = new Subject();
+    @Input('items') public _items: any; // 下拉列表
 
     @Input('refreshSubject')
     public refreshSubject = new Subject();
@@ -55,13 +40,9 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
     // The parent can bind to this event
     @Output() datasSelected = new EventEmitter();
 
-    @Input('selectedDatas')
-    public selectedDatas: any;
-
     public selectOptions: any;
 
     public item: any;
-    public items: any;
     public typeahead = new EventEmitter<string>();
 
     constructor(public http: HttpClient,
@@ -79,7 +60,7 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
 
         if (this.service) {
             this.service.getAll(this.searchStr).subscribe((resp: any) => {
-                this.datasForSelect = resp.content;
+                this._items = resp.content;
                 console.log(resp.content);
             });
         }
@@ -88,7 +69,7 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
     formControlLogic() {
         if (this.controlContainer) {
             if (this.formControlName) {
-                this.control = this.controlContainer.control.get(this.formControlName);
+                this.formControl = this.controlContainer.control.get(this.formControlName);
             } else {
                 console.warn('Missing FormControlName directive from host element of the component');
             }
@@ -109,20 +90,20 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
                 debounceTime(1000),
                 switchMap(term => this.getItemsBySearch(term))
             )
-            .subscribe((items: any) => {
-                this.datasForSelect = items.content;
+            .subscribe((resp: any) => {
+                this._items = resp.content;
                 this.processDataForSelect();
                 this.cd.markForCheck();
             }, (err) => {
                 console.log('error', err);
-                this.datasForSelect = [];
+                this._items = [];
                 this.cd.markForCheck();
             });
     }
 
     datasChanged($event) {
         console.log($event);
-        this.selectedDatas = $event;
+        // this.selectedDatas = $event;
         this.datasSelected.emit($event);
     }
 
@@ -134,8 +115,8 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
     }
 
     processDataForSelect() {
-        if (this.datasForSelect && this.datasForSelect.length > 0) {
-            this.datasForSelect.map(p => {
+        if (this._items && this._items.length > 0) {
+            this._items.map(p => {
                 if (!p.text && p.name) {
                     p.text = p.name;
                 }
@@ -145,38 +126,38 @@ export class IwNgSelectComponent extends AbstractValueAccessor implements OnInit
     }
 
     subscribeParentEvent() {
-        if (this.dataIdForLoadSubject) {
-            this.dataIdForLoadSubject.subscribe(event => {
-                console.log(event);
-                this.selectedDatas = [this.datasForSelect.find(p =>
-                    p.id === event
-                )];
-            });
-        }
+        // if (this.dataIdForLoadSubject) {
+        //     this.dataIdForLoadSubject.subscribe(event => {
+        //         console.log(event);
+        //         this.selectedDatas = [this._items.find(p =>
+        //             p.id === event
+        //         )];
+        //     });
+        // }
+        //
+        // if (this.itemsSubject) {
+        //     this.itemsSubject.subscribe(event => {
+        //         console.log(event);
+        //         this._items = event;
+        //         this.processDataForSelect();
+        //     });
+        // }
 
-        if (this.datasForSelectSubject) {
-            this.datasForSelectSubject.subscribe(event => {
-                console.log(event);
-                this.datasForSelect = event;
-                this.processDataForSelect();
-            });
-        }
-
-        if (this.datasForLoadSubject) {
-            this.datasForLoadSubject.subscribe(event => {
-                console.log(event);
-                this.datasForLoad = event;
-                if (this.datasForLoad && this.datasForLoad.length > 0) {
-                    // this.datasForLoad.map(p => {
-                    //     // p.name = p.name;
-                    //     p.id = p.id;
-                    // });
-                    this.selectedDatas = this.datasForLoad;
-                } else if (this.datasForLoad) {
-                    this.selectedDatas = this.datasForLoad
-                }
-            });
-        }
+        // if (this.datasForLoadSubject) {
+        //     this.datasForLoadSubject.subscribe(event => {
+        //         console.log(event);
+        //         this.datasForLoad = event;
+        //         if (this.datasForLoad && this.datasForLoad.length > 0) {
+        //             // this.datasForLoad.map(p => {
+        //             //     // p.name = p.name;
+        //             //     p.id = p.id;
+        //             // });
+        //             this.selectedDatas = this.datasForLoad;
+        //         } else if (this.datasForLoad) {
+        //             this.selectedDatas = this.datasForLoad
+        //         }
+        //     });
+        // }
     }
 
     writeValue(value: any) {
