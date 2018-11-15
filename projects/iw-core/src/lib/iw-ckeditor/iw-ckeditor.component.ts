@@ -35,9 +35,9 @@ export class IwCkeditorComponent extends AbstractValueAccessor implements OnInit
   // ck editor
   _ckEditorConfig: Config;
   _editor = DecoupledEditor;
-  @Input() uploadUrl: string;
   @Input() documentId: string;
   @Input() token: string;
+  @Input() uploadUrl: string;
   @Input() apiEndPoint: string;
 
   constructor(public http: HttpClient,
@@ -52,7 +52,7 @@ export class IwCkeditorComponent extends AbstractValueAccessor implements OnInit
         // PROVIDE CORRECT VALUES HERE:
         // See the explanation at https://docs.ckeditor.com/ckeditor5/latest/features/collaboration/collaborative-editing.html#data-initialization.
         // tokenUrl: 'https://example.com/cs-token-endpoint',
-        uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
+        // uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
         // webSocketUrl: 'your-organization-id.cke-cs.com/ws/',
         documentId: 'collabEditing'
       }
@@ -96,13 +96,17 @@ export class IwCkeditorComponent extends AbstractValueAccessor implements OnInit
 
   // ckeditor
   public ckeditorOnReady(editor) {
+    const hc = this.httpClient;
+    const tk = this.token;
+    const url = this.uploadUrl;
+    const ep = this.apiEndPoint;
     editor.ui.view.editable.element.parentElement.insertBefore(
       editor.ui.view.toolbar.element,
       editor.ui.view.editable.element
     );
     editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
       console.log(btoa(loader.file));
-      return new UploadAdapter(loader, this.httpClient, this.token, this.apiEndPoint);
+      return new UploadAdapter(loader, hc, tk, url, ep);
     };
   }
 }

@@ -8,15 +8,18 @@ export class UploadAdapter {
   private loader;
   private _httpClient;
   private token: string;
+  private uploadUrl: string;
   private apiEndPoint: string;
 
   constructor(loader: any,
               httpClient: HttpClient,
               token: string,
+              uploadUrl: string,
               apiEndPoint: string) {
     this.loader = loader;
     this._httpClient = httpClient;
     this.token = token;
+    this.uploadUrl = uploadUrl;
     this.apiEndPoint = apiEndPoint;
   }
 
@@ -28,8 +31,8 @@ export class UploadAdapter {
 
   public upload(): Promise<any> {
 
-    const url = this.apiEndPoint + 'v1/attachment/upload?token=' + this.token;
-
+    // const url = this.apiEndPoint + 'v1/attachment/upload?token=' + this.token;
+    const url = this.uploadUrl;
     return new Promise((resolve, reject) => {
       const data = new FormData();
       data.append('file', this.loader.file);
