@@ -25,20 +25,16 @@ import {IwAuthenticationService} from './services/iw-authentication.service';
     IwCoreComponent,
     IwNgSelectComponent,
     IwDropzoneComponent,
-    IwCkeditorComponent
+    IwCkeditorComponent,
+    IwAuthenticationService
   ],
   exports: [
     IwCoreComponent,
     IwNgSelectComponent,
     IwDropzoneComponent,
-    IwCkeditorComponent
+    IwCkeditorComponent,
+    IwAuthenticationService
   ]
 })
 export class IwCoreModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: IwCoreModule,
-      providers: [IwAuthenticationService]
-    };
-  }
 }
