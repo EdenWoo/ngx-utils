@@ -25,8 +25,7 @@ import {IwAuthenticationService} from './services/iw-authentication.service';
     IwCoreComponent,
     IwNgSelectComponent,
     IwDropzoneComponent,
-    IwCkeditorComponent,
-    IwAuthenticationService
+    IwCkeditorComponent
   ],
   exports: [
     IwCoreComponent,
