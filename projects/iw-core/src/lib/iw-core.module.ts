@@ -39,7 +39,7 @@ export class IwCoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: IwCoreModule,
-      providers: [IwAuthenticationService, IwFormBaseComponent]
+      providers: [IwAuthenticationService]
     };
   }
 }
