@@ -9,8 +9,6 @@ import {IwDropzoneComponent} from './iw-dropzone/iw-dropzone.component';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
 import {IwCkeditorComponent} from './iw-ckeditor/iw-ckeditor.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {IwAuthenticationService} from './services/iw-authentication.service';
-import {IwFormBaseComponent} from './base/form-base-component/iw-form-base.component';
 
 @NgModule({
   imports: [
@@ -39,7 +37,7 @@ export class IwCoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: IwCoreModule,
-      providers: [IwAuthenticationService]
+      providers: []
     };
   }
 }
