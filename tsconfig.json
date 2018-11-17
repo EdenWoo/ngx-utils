@@ -28,6 +28,12 @@
       ],
       "iw-core/*": [
         "dist/iw-core/*"
+      ],
+      "iw-base": [
+        "dist/iw-base"
+      ],
+      "iw-base/*": [
+        "dist/iw-base/*"
       ]
     }
   }

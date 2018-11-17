@@ -196,6 +196,46 @@
           }
         }
       }
+    },
+    "iw-base": {
+      "root": "projects/iw-base",
+      "sourceRoot": "projects/iw-base/src",
+      "projectType": "library",
+      "prefix": "ib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/iw-base/tsconfig.lib.json",
+            "project": "projects/iw-base/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/iw-base/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/iw-base/src/test.ts",
+            "tsConfig": "projects/iw-base/tsconfig.spec.json",
+            "karmaConfig": "projects/iw-base/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/iw-base/tsconfig.lib.json",
+              "projects/iw-base/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-utils"
