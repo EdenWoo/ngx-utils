@@ -108,9 +108,11 @@ export class IwFormBaseComponent {
     this.setFormName(); // 设置表单名字
     this.getColumns(dataGrid);
     this.getColumnsInQuery();
-    this.rows = Array.from(
-      Array(Math.ceil(this.columns.length / 2)).keys()
-    );
+    if (this.columns) {
+      this.rows = Array.from(
+        Array(Math.ceil(this.columns.length / 2)).keys()
+      );
+    }
   }
 
 
