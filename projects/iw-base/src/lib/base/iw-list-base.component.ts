@@ -193,20 +193,20 @@ export class IwListBaseComponent {
 
   // columns related functions
 
-  // getColumns(params) {
-  //     this.columnValue = params['columnValue'];
-  //     if (this.columnValue) {
-  //         this.columns = MemberDataGrid.values[this.columnValue].columns;
-  //     }
-  // }
-  //
-  // getColumnKeyAndValue(params) {
-  //     this.columnValue = params['columnValue'];
-  //     this.columnKey = params['columnKey'];
-  //     if (this.columnValue) {
-  //         this.columns = MemberDataGrid.values[this.columnValue].columns;
-  //     }
-  // }
+  getColumns(params) {
+    this.columnValue = params['columnValue'];
+    // if (this.columnValue) {
+    //     this.columns = MemberDataGrid.values[this.columnValue].columns;
+    // }
+  }
+
+  getColumnKeyAndValue(params) {
+    this.columnValue = params['columnValue'];
+    this.columnKey = params['columnKey'];
+    // if (this.columnValue) {
+    //     this.columns = MemberDataGrid.values[this.columnValue].columns;
+    // }
+  }
 
   getColumnVisibility() {
     this.columns.map(c => {
