@@ -4,10 +4,9 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import * as _ from 'lodash';
-import {PermissionConstants} from '../../app/constants/permission.constant';
-import {Constants} from '../../app/constants/app.constant';
-import {IwAuthenticationService} from '../../services/iw-authentication.service';
-
+import {IwAuthenticationService} from '../services/iw-authentication.service';
+import {PermissionConstants} from '../app/constants/permission.constant';
+import {Constants} from '../app/constants/app.constant';
 
 export class IwFormBaseComponent {
   public permission: any;
@@ -87,7 +86,8 @@ export class IwFormBaseComponent {
     }
   }
 
-  initFormControl() {}
+  initFormControl() {
+  }
 
   goBack() {
     this.location.back();
