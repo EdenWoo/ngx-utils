@@ -9,7 +9,7 @@ import {PermissionConstants} from '../app/constants/permission.constant';
 import {environment} from '../environments/environment';
 import {Sort} from '../app/models/sort.model';
 
-export class ListBaseComponent {
+export class IwListBaseComponent {
   public sortOprions: Sorts = new Sorts();
   public permission: any;
   public paging: Paging;
