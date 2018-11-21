@@ -34,6 +34,12 @@
       ],
       "iw-base/*": [
         "dist/iw-base/*"
+      ],
+      "ckeditor5-ngx": [
+        "dist/ckeditor5-ngx"
+      ],
+      "ckeditor5-ngx/*": [
+        "dist/ckeditor5-ngx/*"
       ]
     }
   }

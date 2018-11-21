@@ -236,6 +236,46 @@
           }
         }
       }
+    },
+    "ckeditor5-ngx": {
+      "root": "projects/ckeditor5-ngx",
+      "sourceRoot": "projects/ckeditor5-ngx/src",
+      "projectType": "library",
+      "prefix": "cn",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ckeditor5-ngx/tsconfig.lib.json",
+            "project": "projects/ckeditor5-ngx/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ckeditor5-ngx/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ckeditor5-ngx/src/test.ts",
+            "tsConfig": "projects/ckeditor5-ngx/tsconfig.spec.json",
+            "karmaConfig": "projects/ckeditor5-ngx/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ckeditor5-ngx/tsconfig.lib.json",
+              "projects/ckeditor5-ngx/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-utils"
